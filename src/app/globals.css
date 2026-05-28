@@ -1,0 +1,56 @@
+@import "tailwindcss";
+
+:root {
+  /* Dark mode ONLY as per requirements */
+  --background: #09090b;
+  --foreground: #fafafa;
+  
+  --card: #131316;
+  --card-foreground: #fafafa;
+  
+  --border: #27272a;
+
+  --claro-red: #da291c;
+  --claro-red-hover: #b91d12;
+  --claro-red-transparent: rgba(218, 41, 28, 0.15);
+  --claro-red-gradient: linear-gradient(135deg, #da291c 0%, #7b120c 100%);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-border: var(--border);
+  --color-primary: var(--claro-red);
+  --color-primary-hover: var(--claro-red-hover);
+  --color-primary-transparent: var(--claro-red-transparent);
+  
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Glassmorphism utilities */
+.glass {
+  background: rgba(19, 19, 22, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.glass-card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0) 100%), var(--card);
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+}
