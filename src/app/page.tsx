@@ -61,9 +61,8 @@ function Sidebar({
           <p className="px-3 text-[10px] font-bold uppercase tracking-widest text-stone-400 mb-1">Principal</p>
           <button
             onClick={() => { setActive('inicio'); onClose?.(); }}
-            className={`w-full flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-[13px] font-semibold transition-colors ${
-              active === 'inicio' ? 'bg-stone-100 text-stone-900' : 'text-stone-600 hover:bg-stone-50 hover:text-stone-900'
-            }`}
+            className={`w-full flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-[13px] font-semibold transition-colors ${active === 'inicio' ? 'bg-stone-100 text-stone-900' : 'text-stone-600 hover:bg-stone-50 hover:text-stone-900'
+              }`}
           >
             <Smartphone className={`w-4 h-4 flex-shrink-0 ${active === 'inicio' ? 'text-red-600' : 'text-stone-400'}`} />
             Inicio
@@ -83,9 +82,8 @@ function Sidebar({
                     <button
                       key={item.id}
                       onClick={() => { setActive(item.id); onClose?.(); }}
-                      className={`w-full flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-[13px] font-medium transition-colors ${
-                        isActive ? 'bg-stone-100 text-stone-900 font-semibold' : 'text-stone-600 hover:bg-stone-50 hover:text-stone-900'
-                      }`}
+                      className={`w-full flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-[13px] font-medium transition-colors ${isActive ? 'bg-stone-100 text-stone-900 font-semibold' : 'text-stone-600 hover:bg-stone-50 hover:text-stone-900'
+                        }`}
                     >
                       <Icon className={`w-4 h-4 flex-shrink-0 ${isActive ? 'text-red-600' : 'text-stone-400'}`} />
                       <span className="truncate">{item.label}</span>
@@ -118,11 +116,11 @@ function Sidebar({
 
 function HeroSection({ onNavigate }: { onNavigate: (id: string) => void }) {
   return (
-    <div className="w-full mx-auto py-8 px-4 sm:px-6">
+    <div className="w-full h-screen mx-auto space-y-4 py-6 px-4 sm:px-6">
       {/* Hero card */}
       <div className="relative rounded-3xl overflow-hidden bg-linear-to-br from-pink-200 via-pink-100 to-pink-200 border border-stone-200 shadow-sm mb-8">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(200,76,36,0.4),transparent_60%)]" />
-        <div className="relative px-8 sm:px-12 py-12 sm:py-16">
+        <div className="relative px-4 sm:px-12 py-12 sm:py-16">
           <h1 className="text-[40px] sm:text-[56px] font-black text-stone-900 leading-[1.05] tracking-tight max-w-lg">
             Manual de Comunicación <br />
             <span className="italic font-black text-red-600">Mi Claro App</span>
@@ -154,24 +152,32 @@ function HeroSection({ onNavigate }: { onNavigate: (id: string) => void }) {
         </div>
       </div>
 
-      {/* Stats row */}
-      <div className="grid grid-cols-3 gap-4 mb-8">
-        {[
-          { value: '3', label: 'Pilares de marca' },
-          { value: '4', label: 'Tonos de contexto' },
-          { value: '6+', label: 'Secciones do/don\'t' },
-        ].map((stat, i) => (
-          <div key={i} className="bg-white rounded-2xl border border-stone-200 p-4 text-center shadow-sm">
-            <p className="text-[28px] font-black text-stone-900 leading-none">{stat.value}</p>
-            <p className="text-[11px] text-stone-500 mt-1 font-medium">{stat.label}</p>
-          </div>
-        ))}
+
+      {/* Pillars preview */}
+      <div className="mt-8">
+        <div className="grid gap-3 sm:grid-cols-3">
+          {[
+            { icon: Target, color: 'text-rose-600', bg: 'bg-rose-50', keyword: 'Claridad', desc: 'Sin rodeos, sin tecnicismos.' },
+            { icon: Heart, color: 'text-sky-600', bg: 'bg-sky-50', keyword: 'Empatía', desc: 'Persona a persona, siempre.' },
+            { icon: Zap, color: 'text-amber-600', bg: 'bg-amber-50', keyword: 'Dinamismo', desc: 'Ágil, directo, accionable.' },
+          ].map((p, i) => {
+            const Icon = p.icon;
+            return (
+              <div key={i} className={`${p.bg} rounded-2xl p-5 border border-stone-100`}>
+                <Icon className={`w-5 h-5 ${p.color} mb-3`} />
+                <p className={`text-2xl font-extrabold ${p.color}`}>{p.keyword}</p>
+                <p className="text-[16px] text-stone-600 mt-1">{p.desc}</p>
+              </div>
+            );
+          })}
+        </div>
       </div>
 
       {/* Quick access grid */}
       <div className="mb-4 flex items-center justify-between">
         <h2 className="text-[15px] font-bold text-stone-800">Acceso rápido</h2>
       </div>
+
       <div className="grid gap-3 sm:grid-cols-2">
         {navItems.slice(0, 6).map(item => {
           const Icon = item.icon;
@@ -194,26 +200,21 @@ function HeroSection({ onNavigate }: { onNavigate: (id: string) => void }) {
         })}
       </div>
 
-      {/* Pillars preview */}
-      <div className="mt-8">
-        <h2 className="text-[15px] font-bold text-stone-800 mb-4">Los 3 pilares de Mi Claro</h2>
-        <div className="grid gap-3 sm:grid-cols-3">
-          {[
-            { icon: Target, color: 'text-rose-600', bg: 'bg-rose-50', keyword: 'Claridad', desc: 'Sin rodeos, sin tecnicismos.' },
-            { icon: Heart, color: 'text-sky-600', bg: 'bg-sky-50', keyword: 'Empatía', desc: 'Persona a persona, siempre.' },
-            { icon: Zap, color: 'text-amber-600', bg: 'bg-amber-50', keyword: 'Dinamismo', desc: 'Ágil, directo, accionable.' },
-          ].map((p, i) => {
-            const Icon = p.icon;
-            return (
-              <div key={i} className={`${p.bg} rounded-2xl p-5 border border-stone-100`}>
-                <Icon className={`w-5 h-5 ${p.color} mb-3`} />
-                <p className={`text-[14px] font-extrabold ${p.color}`}>{p.keyword}</p>
-                <p className="text-[12px] text-stone-600 mt-1">{p.desc}</p>
-              </div>
-            );
-          })}
-        </div>
-      </div>
+      {/* Stats row 
+      <div className="grid grid-cols-3 gap-4 mb-8">
+        {[
+          { value: '3', label: 'Pilares de marca' },
+          { value: '4', label: 'Tonos de contexto' },
+          { value: '6+', label: 'Secciones do/don\'t' },
+        ].map((stat, i) => (
+          <div key={i} className="bg-white rounded-2xl border border-stone-200 p-4 text-center shadow-sm">
+            <p className="text-[28px] font-black text-stone-900 leading-none">{stat.value}</p>
+            <p className="text-[11px] text-stone-500 mt-1 font-medium">{stat.label}</p>
+          </div>
+        ))}
+      </div>*/}
+
+
     </div>
   );
 }
