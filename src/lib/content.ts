@@ -3,7 +3,10 @@ import {
   AlertTriangle, CheckCircle, Info, MessageSquare,
   BookOpen, Star, Calendar, Users, CheckCircle2,
   type LucideIcon,
+  ChartGantt
 } from 'lucide-react';
+
+
 
 // ─── Nav ─────────────────────────────────────────────────────────────────────
 
@@ -13,6 +16,7 @@ export interface NavItem {
   icon: LucideIcon;
   group: string;
 }
+
 
 export const navItems1: NavItem[] = [
   // FUNDAMENTOS
@@ -43,9 +47,11 @@ export const navItems2: NavItem[] = [
   { id: 'lenguaje',        label: 'Nuestro lenguaje',        icon: BookOpen,      group: 'Fundamentos' },
   { id: 'intensidad_tono',    label: 'Intensidades del tono',   icon: BarChart,      group: 'Fundamentos' },
 
+  
+  { id: 'aplicaciones',   label: 'Aplicaciones en la comunicacion', icon: ChartGantt,   group: 'Buenas prácticas' },
   // APLICACIONES (El punto crítico de la profesora: ¡PANTALLAS!)
-  { id: 'aplicaciones',    label: 'Aplicaciones prácticas',  icon: Smartphone,    group: 'Ejemplos' },
-  { id: 'recomendaciones', label: 'Recomendaciones generales', icon: CheckCircle2, group: 'Ejemplos' },
+  { id: 'ejemplos',   label: 'Ejemplos De Implementacion', icon: Smartphone,   group: 'Buenas prácticas' },
+  { id: 'recomendaciones', label: 'Recomendaciones generales', icon: CheckCircle2, group: 'Buenas prácticas' },
 ];
 
 // ─── Section Content ──────────────────────────────────────────────────────────
@@ -462,30 +468,87 @@ export const sections: DocSection[] = [
   },
   {
     id: 'aplicaciones',
-    title: 'Aplicaciones prácticas',
-    subtitle: 'Ejemplos aplicados directamente en las pantallas de Mi Claro.',
-    tags: ['Pantallas', 'UX', 'Ejemplos'],
-    readTime: 5,
+    title: 'Aplicaciones en la comunicación',
+    subtitle: 'Mensajes de error y Onboarding: ejemplos y mejores prácticas.',
+    tags: ['Errores', 'Onboarding', 'UX Writing', 'Buenas prácticas'],
+    readTime: 8,
     content: [
-      { type: 'lead', text: 'Aquí demostramos cómo se aplican las reglas de voz y tono en escenarios reales de la aplicación, contrastando la versión original con nuestra propuesta de mejora.' },
+      { type: 'lead', text: 'Los mensajes de error son el momento de mayor vulnerabilidad del usuario. Un buen mensaje convierte la frustración en acción.' },
       {
-        // AQUÍ ES DONDE DEBES PONER TUS IMÁGENES.
-        type: 'screens',
+        type: 'list',
+        title: 'Reglas para mensajes de error:',
+        items: [
+          'Nunca culpes al usuario. Usa "algo salió mal" en lugar de "ingresaste mal el número".',
+          'Sé específico sobre qué pasó y qué hacer ahora.',
+          'Siempre ofrece una acción o alternativa.',
+          'Usa un tono empático, no técnico ni frío.',
+          'Evita códigos de error visibles al usuario (guárdalos para logs internos).',
+        ],
+      },
+      {
+        type: 'donts',
         items: [
           {
-            title: 'Recuperación de Contraseña',
-            context: 'Cuando el usuario olvida su clave y recibe un mensaje de error.',
-            imageOriginal: '/img/error-original.png', // Reemplaza con tus rutas
-            imageNew: '/img/error-propuesta.png',
-            analysis: [
-              'Se eliminó el código de error técnico que frustraba al usuario.',
-              'Se aplicó el tono "Tranquilizador" de la sección Intensidades.',
-              'Se agregó un botón claro con un verbo en infinitivo ("Reintentar").'
-            ]
+            topic: 'Título del error',
+            do: 'Algo salió mal',
+            doExample: 'Lo sentimos, algo salió mal de nuestro lado.',
+            dont: 'Error 500 / Internal Server Error',
+            dontExample: 'Error 500: Internal Server Error. Proceso no completado.',
           },
-          // Agrega aquí más pantallas (Onboarding, Pagos, etc.)
-        ]
-      }
+          {
+            topic: 'Descripción y acción',
+            do: 'Explica qué pasó y ofrece un camino de salida claro.',
+            doExample: 'No pudimos procesar tu pago. Verifica los datos de tu tarjeta o intenta con otro método.',
+            dont: 'Ser vago o dejar al usuario sin opciones.',
+            dontExample: 'Transacción fallida. Intente nuevamente más tarde.',
+          },
+          {
+            topic: 'Atribución del error',
+            do: 'Asumir responsabilidad cuando sea ambiguo.',
+            doExample: 'Parece que tuvimos un problema de conexión. Vuelve a intentarlo.',
+            dont: 'Culpar al usuario o al dispositivo por defecto.',
+            dontExample: 'Su conexión falló. Verifique su red.',
+          },
+        ],
+      },
+      { type: 'lead', text: 'El onboarding debe generar confianza, mostrar valor inmediato y hacer el proceso de registro lo menos friccionante posible.' },
+      {
+        type: 'list',
+        title: 'Principios del onboarding:',
+        items: [
+          'La bienvenida debe mencionar el nombre del usuario cuando esté disponible.',
+          'Explica el "para qué" antes del "cómo".',
+          'Cada pantalla de onboarding debe tener un único mensaje o acción.',
+          'Los microtextos (labels, placeholders) deben ser instructivos, no solo descriptivos.',
+          'Celebra el registro completado — es un logro para el usuario.',
+        ],
+      },
+      {
+        type: 'donts',
+        items: [
+          {
+            topic: 'Mensaje de bienvenida',
+            do: 'Personalizado y que anticipe el valor',
+            doExample: '¡Hola, Juliana! Tu cuenta Mi Claro está lista. Desde aquí puedes recargar, revisar tu plan y mucho más.',
+            dont: 'Genérico e impersonal',
+            dontExample: 'Registro exitoso. Bienvenido al sistema.',
+          },
+          {
+            topic: 'Campos del formulario (placeholders)',
+            do: 'Instructivo y contextual',
+            doExample: 'Número de celular Claro (ej: 300 123 4567)',
+            dont: 'Solo descriptivo',
+            dontExample: 'Número de celular',
+          },
+          {
+            topic: 'CTA del formulario',
+            do: 'Accionable y específico',
+            doExample: 'Crear mi cuenta gratis',
+            dont: 'Genérico',
+            dontExample: 'Enviar / Submit',
+          },
+        ],
+      },
     ],
   },
   {
@@ -748,6 +811,11 @@ export const sections: DocSection[] = [
       }
     ],
   },
+
+
+  // segunda columna
+
+
 ];
 
 // ─── Search Index ──────────────────────────────────────────────────────────────

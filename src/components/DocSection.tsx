@@ -239,7 +239,7 @@ function VerbalUniverseCards({ says, doesNotSay, tip }: { says: string[], doesNo
 
         {/* NO DICE */}
         <div className="z-0 w-full max-w-[340px] aspect-square flex flex-col items-center justify-center bg-stone-200 rounded-full p-8 shadow-lg text-center md:-ml-8">
-          <h4 className="text-lg font-black text-black mb-4 tracking-wide uppercase md:pl-8">Mi Claro <span className="text-red-400">No</span> Dice</h4>
+          <h4 className="text-lg font-black text-black mb-4 tracking-wide uppercase md:pl-8">Mi Claro <span className="text-red-700">No</span> Dice</h4>
           <ul className="grid grid-cols-2 gap-x-4 gap-y-1.5 text-[13px] font-bold text-stone-900 text-left w-full max-w-[240px] md:pl-8">
             {doesNotSay.map((word, i) => (
               <li key={i} className="flex items-center gap-1.5 truncate">

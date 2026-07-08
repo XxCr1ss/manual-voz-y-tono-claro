@@ -10,7 +10,7 @@ import { CommandPalette } from '@/components/CommandPalette';
 import { DocSection } from '@/components/DocSection';
 import { ExamplesSection } from '@/components/ExamplesSection';
 
-const navItems = [...navItems1, ...navItems2];
+const navItems = [ ...navItems2];
 
 // ─── Sidebar ──────────────────────────────────────────────────────────────────
 
@@ -58,7 +58,7 @@ function Sidebar({
       </div>
 
       {/* Nav */}
-      <nav className="flex-1 overflow-y-auto py-4 px-3 space-y-5">
+      <nav className="flex-1 overflow-y-auto py-2 px-3 space-y-5">
         {/* Inicio */}
         <div>
           <p className="px-3 text-[10px] font-bold uppercase tracking-widest text-stone-400 mb-1">Principal</p>
@@ -72,33 +72,7 @@ function Sidebar({
           </button>
         </div>
 
-        {groups1.map(group => {
-          const items = navItems1.filter(n => n.group === group);
-          return (
-            <div key={group}>
-              <p className="px-3 text-[10px] font-bold uppercase tracking-widest text-stone-400 mb-1">{group}</p>
-              <div className="space-y-0.5">
-                {items.map(item => {
-                  const Icon = item.icon;
-                  const isActive = active === item.id;
-                  return (
-                    <button
-                      key={item.id}
-                      onClick={() => { setActive(item.id); onClose?.(); }}
-                      className={`w-full flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-[13px] font-medium transition-colors ${isActive ? 'bg-stone-100 text-stone-900 font-semibold' : 'text-stone-600 hover:bg-stone-50 hover:text-stone-900'
-                        }`}
-                    >
-                      <Icon className={`w-4 h-4 flex-shrink-0 ${isActive ? 'text-red-600' : 'text-stone-400'}`} />
-                      <span className="truncate">{item.label}</span>
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-          );
-        })}
 
-        <div className="h-px bg-stone-200 my-2 mx-3" />
 
         {groups2.map(group => {
           const items = navItems2.filter(n => n.group === group);

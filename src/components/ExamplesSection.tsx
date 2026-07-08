@@ -44,7 +44,7 @@ const screens: Screen[] = [
     bg: 'bg-gray-50',
     hotspots: [
       {
-        id: 'h1', label: '1', x: '50%', y: '45%', type: 'good',
+        id: 'h1', label: '1', x: '60%', y: '22%', type: 'good',
         title: 'Jerarquía Clara',
         problem: 'Los datos más importantes (como el monto a pagar) destacan con mayor tamaño y peso, guiando al instante el ojo del usuario.',
         suggestion: 'Usa diferentes tamaños, pesos de fuente y colores para crear un recorrido visual lógico de mayor a menor importancia.',
@@ -59,7 +59,7 @@ const screens: Screen[] = [
     bg: 'bg-gray-50',
     hotspots: [
       {
-        id: 'h1', label: '1', x: '50%', y: '65%', type: 'info',
+        id: 'h1', label: '1', x: '50%', y: '43%', type: 'info',
         title: 'Visibilidad de Estados',
         problem: 'El usuario debe poder saber al instante si puede interactuar con un botón o si el sistema aún no se lo permite (estado inactivo).',
         suggestion: 'Asegúrate de que los botones inactivos tengan menor contraste, y que los botones listos destaquen con el color principal de la marca.',
@@ -74,7 +74,7 @@ const screens: Screen[] = [
     bg: 'bg-gray-50',
     hotspots: [
       {
-        id: 'h1', label: '1', x: '50%', y: '80%', type: 'good',
+        id: 'h1', label: '1', x: '50%', y: '63%', type: 'good',
         title: 'Verbo de Acción Directo',
         problem: 'El botón indica con exactitud qué pasará al presionarlo usando un verbo de acción claro (ej: "Pagar", "Recargar", "Comprar").',
         suggestion: 'Evita verbos genéricos o pasivos como "Aceptar", "Ir" o "Continuar". Sé muy descriptivo con la acción a realizar.',
@@ -89,7 +89,7 @@ const screens: Screen[] = [
     bg: 'bg-gray-50',
     hotspots: [
       {
-        id: 'h1', label: '1', x: '50%', y: '30%', type: 'good',
+        id: 'h1', label: '1', x: '50%', y: '13%', type: 'good',
         title: 'Confirmación Directa y Clara',
         problem: 'El mensaje celebra de manera corta y amable que el proceso terminó con éxito, resumiendo los detalles de la transacción.',
         suggestion: 'Mantén los mensajes de éxito cortos. Muestra siempre los datos clave de la operación y ofrece un "siguiente paso" (ej. "Ir al inicio").',
@@ -104,7 +104,7 @@ const screens: Screen[] = [
     bg: 'bg-gray-50',
     hotspots: [
       {
-        id: 'h1', label: '1', x: '50%', y: '45%', type: 'bad',
+        id: 'h1', label: '1', x: '50%', y: '75%', type: 'bad',
         title: 'Tono Empático en Errores',
         problem: 'En momentos de frustración, el texto nunca debe sonar robótico, culpar al usuario, ni mostrar códigos técnicos incomprensibles.',
         suggestion: 'Habla desde la voz del sistema, explica el fallo de forma humana y ofrece de inmediato una alternativa de contacto o reintento.',
