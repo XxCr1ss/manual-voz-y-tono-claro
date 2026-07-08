@@ -3,12 +3,14 @@
 import { useState, useEffect, useCallback } from 'react';
 import {
   Search, Menu, X, Smartphone, Target, Heart, Zap,
-  ArrowRight, ChevronRight,
+  ArrowRight, ChevronRight, Users, BookOpen, Monitor, Calendar
 } from 'lucide-react';
-import { navItems, sections } from '@/lib/content';
+import { navItems1, navItems2, sections } from '@/lib/content';
 import { CommandPalette } from '@/components/CommandPalette';
 import { DocSection } from '@/components/DocSection';
 import { ExamplesSection } from '@/components/ExamplesSection';
+
+const navItems = [...navItems1, ...navItems2];
 
 // ─── Sidebar ──────────────────────────────────────────────────────────────────
 
@@ -23,7 +25,8 @@ function Sidebar({
   onClose?: () => void;
   onOpenSearch: () => void;
 }) {
-  const groups = Array.from(new Set(navItems.map(n => n.group)));
+  const groups1 = Array.from(new Set(navItems1.map(n => n.group)));
+  const groups2 = Array.from(new Set(navItems2.map(n => n.group)));
 
   return (
     <div className="flex flex-col h-full bg-white">
@@ -69,8 +72,36 @@ function Sidebar({
           </button>
         </div>
 
-        {groups.map(group => {
-          const items = navItems.filter(n => n.group === group);
+        {groups1.map(group => {
+          const items = navItems1.filter(n => n.group === group);
+          return (
+            <div key={group}>
+              <p className="px-3 text-[10px] font-bold uppercase tracking-widest text-stone-400 mb-1">{group}</p>
+              <div className="space-y-0.5">
+                {items.map(item => {
+                  const Icon = item.icon;
+                  const isActive = active === item.id;
+                  return (
+                    <button
+                      key={item.id}
+                      onClick={() => { setActive(item.id); onClose?.(); }}
+                      className={`w-full flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-[13px] font-medium transition-colors ${isActive ? 'bg-stone-100 text-stone-900 font-semibold' : 'text-stone-600 hover:bg-stone-50 hover:text-stone-900'
+                        }`}
+                    >
+                      <Icon className={`w-4 h-4 flex-shrink-0 ${isActive ? 'text-red-600' : 'text-stone-400'}`} />
+                      <span className="truncate">{item.label}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          );
+        })}
+
+        <div className="h-px bg-stone-200 my-2 mx-3" />
+
+        {groups2.map(group => {
+          const items = navItems2.filter(n => n.group === group);
           return (
             <div key={group}>
               <p className="px-3 text-[10px] font-bold uppercase tracking-widest text-stone-400 mb-1">{group}</p>
@@ -116,7 +147,7 @@ function Sidebar({
 
 function HeroSection({ onNavigate }: { onNavigate: (id: string) => void }) {
   return (
-    <div className="w-full h-screen mx-auto space-y-4 py-6 px-4 sm:px-6">
+    <div className="w-full   mx-auto space-y-4 py-6 px-4 sm:px-6">
       {/* Hero card */}
       <div className="relative rounded-3xl overflow-hidden bg-linear-to-br from-pink-200 via-pink-100 to-pink-200 border border-stone-200 shadow-sm mb-8">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(200,76,36,0.4),transparent_60%)]" />
@@ -215,6 +246,64 @@ function HeroSection({ onNavigate }: { onNavigate: (id: string) => void }) {
       </div>*/}
 
 
+      {/* Project Info Section */}
+      <div className="mt-12  bg-white rounded-3xl p-6 sm:p-10 border border-stone-200 shadow-sm">
+        <div className="mb-8">
+          <div className="flex gap-2 mb-4">
+            <span className="px-2.5 py-1 bg-stone-100 text-stone-600 rounded-lg text-[11px] font-bold uppercase tracking-wider">Proyecto</span>
+            <span className="px-2.5 py-1 bg-stone-100 text-stone-600 rounded-lg text-[11px] font-bold uppercase tracking-wider">Académico</span>
+          </div>
+          <h2 className="text-[28px] font-black text-stone-900 leading-tight mb-2">Información del Proyecto</h2>
+          <p className="text-[16px] text-stone-500">Contexto académico y propósito de este manual de voz y tono.</p>
+        </div>
+
+        <p className="text-[18px] text-stone-800 font-medium leading-relaxed mb-8">
+          Este manual define y estructura la personalidad de la comunicación para la aplicación móvil Mi Claro, asegurando que cada interacción sea clara, empática y consistente.
+        </p>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+          <div className="flex items-start gap-4 p-4 rounded-2xl bg-stone-50 border border-stone-100">
+            <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center shadow-sm flex-shrink-0">
+              <Users className="w-5 h-5 text-stone-700" />
+            </div>
+            <div>
+              <p className="text-[11px] font-bold text-stone-400 uppercase tracking-wider mb-1">Autores</p>
+              <p className="text-[14px] font-semibold text-stone-900">Cristian David Cabrera Pantoja<br/>Brayan Steven Narvaez Valdez</p>
+            </div>
+          </div>
+          <div className="flex items-start gap-4 p-4 rounded-2xl bg-stone-50 border border-stone-100">
+            <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center shadow-sm flex-shrink-0">
+              <BookOpen className="w-5 h-5 text-stone-700" />
+            </div>
+            <div>
+              <p className="text-[11px] font-bold text-stone-400 uppercase tracking-wider mb-1">Asignatura</p>
+              <p className="text-[14px] font-semibold text-stone-900">Diseño de Interfaces</p>
+            </div>
+          </div>
+          <div className="flex items-start gap-4 p-4 rounded-2xl bg-stone-50 border border-stone-100">
+            <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center shadow-sm flex-shrink-0">
+              <Monitor className="w-5 h-5 text-stone-700" />
+            </div>
+            <div>
+              <p className="text-[11px] font-bold text-stone-400 uppercase tracking-wider mb-1">Institución</p>
+              <p className="text-[14px] font-semibold text-stone-900">Universidad del Valle</p>
+            </div>
+          </div>
+          <div className="flex items-start gap-4 p-4 rounded-2xl bg-stone-50 border border-stone-100">
+            <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center shadow-sm flex-shrink-0">
+              <Calendar className="w-5 h-5 text-stone-700" />
+            </div>
+            <div>
+              <p className="text-[11px] font-bold text-stone-400 uppercase tracking-wider mb-1">Periodo académico</p>
+              <p className="text-[14px] font-semibold text-stone-900">Año {new Date().getFullYear()}</p>
+            </div>
+          </div>
+        </div>
+
+        <p className="text-[15px] text-stone-600 leading-relaxed">
+          El objetivo de este proyecto es demostrar que el UX Writing y la definición de voz de marca son componentes críticos del diseño de interfaces. Un mismo flujo puede generar confianza o frustración dependiendo exclusivamente de cómo está redactado.
+        </p>
+      </div>
     </div>
   );
 }
